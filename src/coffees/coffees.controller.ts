@@ -13,6 +13,8 @@ import {
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { Coffee } from './entities/coffee.entity';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -26,15 +28,13 @@ export class CoffeesController {
 
   //http://localhost:3000/coffees?limit=2&offset=20
   @Get()
-  findAllPaginated(@Query() paginationQuery) {
-    const { limit, offset } = paginationQuery;
-
-    return `returns all paginated coffees ${limit} ${offset}`;
+  findAllPaginated(@Query() paginationQuery: PaginationQueryDto) {
+    return this.coffeesService.findAllPaginated(paginationQuery);
   }
 
   @Get(':id') // route parameters
   findOne(@Param('id') id: string) {
-    return this.coffeesService.findById(id);
+    return this.coffeesService.findOne(id);
   }
 
   @Post()
@@ -46,6 +46,11 @@ export class CoffeesController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     this.coffeesService.update(id, updateCoffeeDto);
+  }
+
+  @Patch()
+  recommendCoffee(@Body() coffee: Coffee) {
+    this.recommendCoffee(coffee);
   }
 
   @Delete(':id')
