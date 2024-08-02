@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import * as Joi from '@hapi/joi';
 import appConfig from './config/app.config';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
     }),
     CoffeeRatingModule,
     DatabaseModule,
+    CommonModule,
   ],
   // controllers: [AppController],
   // providers: [AppService],
