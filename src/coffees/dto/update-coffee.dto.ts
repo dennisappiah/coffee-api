@@ -1,7 +1,4 @@
-import { Flavor } from '../entities/flavor.entity';
+import { PartialType } from '@nestjs/swagger';
+import { CreateCoffeeDto } from './create-coffee.dto';
 
-export class UpdateCoffeeDto {
-  readonly name?: string;
-  readonly brand?: string;
-  readonly flavors?: Flavor[];
-}
+export class UpdateCoffeeDto extends PartialType(CreateCoffeeDto) {}
