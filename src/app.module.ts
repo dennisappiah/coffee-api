@@ -7,6 +7,7 @@ import * as Joi from '@hapi/joi';
 import appConfig from './config/app.config';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { CommonModule } from './common/common.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { CommonModule } from './common/common.module';
         synchronize: true,
       }),
     }),
+    //mongoose module
+    MongooseModule.forRoot('mongodb://localhost:27017/coffeeproject'),
     CoffeeRatingModule,
     DatabaseModule,
     CommonModule,
